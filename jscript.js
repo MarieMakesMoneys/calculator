@@ -22,13 +22,21 @@ const oldLine = document.querySelector('.toptext');
 const typeLine = document.querySelector('.bottomtext');
 const btns = document.querySelectorAll('.btn');
 
-five.addEventListener('click', () => {
-    console.log('five');
-    document.createElement('div').textContent = '5';
-    'typeLine'.appendChild('div');
-    console.log('victoire')
-});
+let a = 3;
+let b = 2;
 
-six.addEventListener('click', () => {
-    console.log('6')
-});
+function add(a, b) {
+    return a + b;
+};
+
+function substract(a, b) {
+    return a - b;
+};
+
+function multiply(a, b) {
+    return a * b;
+};
+
+function divide(a, b) {
+    return a / b;
+};
