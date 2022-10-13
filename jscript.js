@@ -24,6 +24,7 @@ const btns = document.querySelectorAll('.btn');
 
 let a = 3;
 let b = 2;
+let ope = '+'
 
 function add(a, b) {
     return a + b;
@@ -39,4 +40,16 @@ function multiply(a, b) {
 
 function divide(a, b) {
     return a / b;
+};
+
+function operate(a, b, ope) {
+    if (ope == '+') {
+        return add(a, b);
+    } else if (ope == '-') {
+        return substract(a, b);
+    } else if (ope == '*') {
+        return multiply(a, b);
+    } else if (ope == '/') {
+        return divide(a, b);
+    };
 };
