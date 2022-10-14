@@ -1,7 +1,6 @@
 const clear = document.querySelector('.clear');
-// const DEL = document.querySelector('.DEL');
+const deleteBtn = document.querySelector('.DEL');
 const posneg = document.querySelector('.posneg')
-//const point = document.querySelector('.point');
 const equal = document.querySelector('.equal');
 
 let oldLine = document.querySelector('.toptext');
@@ -123,4 +122,9 @@ clear.addEventListener('click', () => window.location.reload());
 posneg.addEventListener('click', function() {
     b = 0 - b;
     currentLine.textContent = b;
-})
+});
+
+deleteBtn.addEventListener('click', () => {
+    b = b.slice(0, b.length - 1);
+    currentLine.textContent = b;
+});
