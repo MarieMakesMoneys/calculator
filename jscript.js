@@ -1,7 +1,7 @@
 const clear = document.querySelector('.clear');
-// const posneg = document.querySelector('.posneg');
 // const DEL = document.querySelector('.DEL');
-const point = document.querySelector('.point');
+const posneg = document.querySelector('.posneg')
+//const point = document.querySelector('.point');
 const equal = document.querySelector('.equal');
 
 let oldLine = document.querySelector('.toptext');
@@ -119,3 +119,8 @@ function operate(a, b, ope) {
 };
 
 clear.addEventListener('click', () => window.location.reload());
+
+posneg.addEventListener('click', function() {
+    b = 0 - b;
+    currentLine.textContent = b;
+})
