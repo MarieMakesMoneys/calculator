@@ -1,30 +1,88 @@
-const C = document.querySelector('.C');
-const posneg = document.querySelector('.posneg');
-const modulo = document.querySelector('#modulo');
-const DEL = document.querySelector('.DEL');
-const seven = document.querySelector('#seven');
-const eight = document.querySelector('#eight');
-const nine = document.querySelector('#nine');
-const divide = document.querySelector('#divide');
-const four = document.querySelector('#four');
-const five = document.querySelector('#five');
-const six = document.querySelector('#six');
-const mult = document.querySelector('#mult');
-const one = document.querySelector('#one');
-const two = document.querySelector('#two');
-const three = document.querySelector('#three');
-const minus = document.querySelector('#minus');
-const zero = document.querySelector('#zero');
-const point = document.querySelector('#point');
+const clear = document.querySelector('.clear');
+// const posneg = document.querySelector('.posneg');
+// const DEL = document.querySelector('.DEL');
+const point = document.querySelector('.point');
 const equal = document.querySelector('.equal');
-const plus = document.querySelector('#plus');
-const oldLine = document.querySelector('.toptext');
-const typeLine = document.querySelector('.bottomtext');
-const btns = document.querySelectorAll('.btn');
 
-let a = 3;
-let b = 2;
-let ope = '+'
+let oldLine = document.querySelector('.toptext');
+let currentLine = document.querySelector('.bottomtext');
+
+const operators = document.querySelectorAll('.operator')
+const numbers = document.querySelectorAll('.num');
+
+let a = '0';
+let b = '';
+let ope = '';
+
+numbers.forEach((number) => number.addEventListener('click', function (e) {
+    if (ope == '') {
+        handleNumber(e.target.textContent);
+        currentLine.textContent = b;
+    } else if (ope !== '') { // quand on a selectionné un opérateur
+        oldLine.textContent = b + ope; // le premier nombre choisi et l'opérateur sont affichés sur la ligne du haut
+        a = b; // le premier nombre choisi est rang dans a, pour plus tard operate()
+        b = ''; // vide b, qui est rempli par handle number mais revidé quand on essaye d'avoir un plus grand nombre
+        handleNumber(e.target.textContent); // b += num tapé
+        currentLine.textContent = b; // b est montré sur la ligne du bas
+    }
+}));
+
+function handleNumber(num) {
+    b += num;
+};
+
+operators.forEach((operator) => operator.addEventListener('click', function(e) {
+    if (ope == '') {
+        handleOperator(e.target.textContent);
+        currentLine.textContent += ope; 
+    } else if (ope !== '') {
+        handleEqual();
+        handleOperator(e.target.textContent);
+        currentLine.textContent += ope; 
+    }
+}))
+
+function handleOperator(oper) {
+    ope = oper;
+}
+
+function handleEqual() {
+    a = Number(a);
+    b = Number(b);
+    if (ope == '') {
+        oldLine.textContent = a + ope + b;
+        ope = '+';
+        let result = operate(a, b, ope);
+        ope = '';
+        b = Number(result.toFixed(3));
+        currentLine.textContent = b;
+    } else {
+        oldLine.textContent = a + ope + b;
+        let result = operate(a, b, ope);
+        ope = '';
+        b = Number(result.toFixed(3));
+        currentLine.textContent = b;
+    }
+}
+
+equal.addEventListener('click', function() {
+    a = Number(a);
+    b = Number(b);
+    if (ope == '') {
+        oldLine.textContent = a + ope + b;
+        ope = '+';
+        let result = operate(a, b, ope);
+        ope = '';
+        b = Number(result.toFixed(3));
+        currentLine.textContent = b;
+    } else {
+        oldLine.textContent = a + ope + b;
+        let result = operate(a, b, ope);
+        ope = '';
+        b = Number(result.toFixed(3));
+        currentLine.textContent = b;
+    }
+});
 
 function add(a, b) {
     return a + b;
@@ -42,14 +100,22 @@ function divide(a, b) {
     return a / b;
 };
 
+function modulo(a, b) {
+    return a % b;
+}
+
 function operate(a, b, ope) {
     if (ope == '+') {
         return add(a, b);
     } else if (ope == '-') {
         return substract(a, b);
-    } else if (ope == '*') {
+    } else if (ope == 'x') {
         return multiply(a, b);
     } else if (ope == '/') {
         return divide(a, b);
+    } else if (ope == '%') {
+        return modulo(a, b);
     };
 };
+
+clear.addEventListener('click', () => window.location.reload());
