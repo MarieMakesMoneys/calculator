@@ -120,6 +120,7 @@ posneg.addEventListener('click', function() {
 });
 
 deleteBtn.addEventListener('click', () => {
+    b = b.toString();
     b = b.slice(0, b.length - 1);
     currentLine.textContent = b;
 });
