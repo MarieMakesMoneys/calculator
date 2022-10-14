@@ -14,16 +14,8 @@ let b = '';
 let ope = '';
 
 numbers.forEach((number) => number.addEventListener('click', function (e) {
-    if (ope == '') {
-        handleNumber(e.target.textContent);
-        currentLine.textContent = b;
-    } else if (ope !== '') { // quand on a selectionné un opérateur
-        oldLine.textContent = b + ope; // le premier nombre choisi et l'opérateur sont affichés sur la ligne du haut
-        a = b; // le premier nombre choisi est rang dans a, pour plus tard operate()
-        b = ''; // vide b, qui est rempli par handle number mais revidé quand on essaye d'avoir un plus grand nombre
-        handleNumber(e.target.textContent); // b += num tapé
-        currentLine.textContent = b; // b est montré sur la ligne du bas
-    }
+    handleNumber(e.target.textContent);
+    currentLine.textContent = b;
 }));
 
 function handleNumber(num) {
@@ -31,6 +23,9 @@ function handleNumber(num) {
 };
 
 operators.forEach((operator) => operator.addEventListener('click', function(e) {
+    oldLine.textContent = b + ope; 
+    a = b;
+    b = '';
     if (ope == '') {
         handleOperator(e.target.textContent);
         currentLine.textContent += ope; 
