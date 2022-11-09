@@ -17,7 +17,6 @@ numbers.forEach((number) => {
     number.addEventListener('click', function (e) {
         handleNumber(e.target.textContent);
         currentLine.textContent = b;
-        divB.textContent = b
     })
 });
 
@@ -25,48 +24,39 @@ function handleNumber(num) {
     b += num;
 };
 
-let divA = document.querySelector('.a')
-let divB = document.querySelector('.b')
-let divC = document.querySelector('.c')
-let divOpe = document.querySelector('.ope')
-let divRes = document.querySelector('.res')
-
 operators.forEach((operator) => { 
     operator.addEventListener('click', function(e) {
-        if (a=='') {
+        if (a == '') {
             ope = e.target.textContent
-            divOpe.textContent = ope
             let c = b + ope; 
-            divC.textContent = c
             a = b;
-            divA.textContent = a
             b = '';
-            divB.textContent = b
+            oldLine.textContent = c
+        } else if (a != '' && b != '') {
+            handleEqual()
+            ope = e.target.textContent
+            let c = a + ope;
+            b = ''
             oldLine.textContent = c
         } else {
             ope = e.target.textContent
-            divOpe.textContent = ope
             let c = a + ope
-            divC.textContent = c
             b = ''
-            divB.textContent = b
-            divA.textContent = a
             oldLine.textContent = c
         }
-        
-        //} else if (ope !== '') {
-        //    handleEqual();
-        //    handleOperator(e.target.textContent);
-        //    currentLine.textContent += ope; 
-        //}
     })
 });
 
-//function handleOperator(oper) {
-//    ope = oper;
-//}
+function handleEqual() {
+    a = Number(a);
+    b = Number(b);
 
+    oldLine.textContent = a + ope + b;
+    let result = operate(a, b, ope);
 
+    a = Number(result.toFixed(3));
+    currentLine.textContent = a;
+}
 
 equal.addEventListener('click', function() {
     a = Number(a);
@@ -74,12 +64,8 @@ equal.addEventListener('click', function() {
 
     oldLine.textContent = a + ope + b;
     let result = operate(a, b, ope);
-    divRes.textContent = result
-    //ope = '';
-    
    
     a = Number(result.toFixed(3));
-     divA.textContent = a
     currentLine.textContent = a;
 });
 
