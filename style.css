@@ -58,3 +58,14 @@ body {
     margin: 2px;
     flex: 1;
 }
+
+footer {
+    font-size: 25px;
+    color: rgb(134, 175, 155);
+    padding: 15px;
+    text-align: center;
+}
+
+footer :link, footer :visited {
+    color: rgb(134, 175, 155);
+}
