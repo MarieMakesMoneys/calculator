@@ -12,6 +12,7 @@ body {
     padding: 16px;
     display: flex;
     flex-direction: column;
+    box-shadow: 2px 2px 10px rgb(97, 136, 117);
 }
 
 .screen {
@@ -23,6 +24,7 @@ body {
     color: rgb(2, 41, 22);
     margin-bottom: 16px;
     padding: 16px;
+    box-shadow: inset 2px 2px 10px rgb(134, 175, 155);
 }
 
 .toptext {
@@ -57,6 +59,12 @@ body {
     padding: 8px;
     margin: 2px;
     flex: 1;
+    opacity: .8;
+}
+
+.btn:hover {
+    cursor: pointer;
+    opacity: 1;
 }
 
 footer {
